@@ -1,0 +1,17 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory",
+    "file": "mydata.json"
+  },
+  "postgres": {
+    "host": "db",
+    "port": 5432,
+    "url": "",
+    "database": "${POSTGRES_DB}",
+    "password": "${POSTGRES_PASSWORD}",
+    "name": "postgres",
+    "user": "${POSTGRES_USER}",
+    "connector": "postgresql"
+  }
+}
