@@ -12,57 +12,23 @@ services:
       - "3000:3000"
     env_file:
       - ./config/parameters.env
-#   settings are in config/parameters.env environment parameter just for remember another way
-#    environment:
-#      - NODE_ENV=development
     depends_on:
       - db
-    networks:
-      - iawapp
 
   db:
+    image: postgres:alpine
     env_file:
       - ./config/parameters.env
-    image: postgres:alpine
     ports:
       - "5432:5432"
     volumes:
       - ./pgdata:/var/lib/postgresql/data
-    networks:
-      - iawapp
-# if we need to run a Dockerfile and a script inside it, here is an example:
-#    build: './config/db'
 
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin
+      - PGADMIN_DEFAULT_PASSWORD=1234
+    ports:
+      - "85:80"
 
-# mongo configuration, if needed we could do something like:
-#  mongo:
-#    image: mongo
-#    volumes:
-#      - ./data/db:/data/db
-#    ports:
-#      - "27017:27017"
-#    environment:
-#      - AUTH=yes
-#      - MONGODB_ADMIN_USER=admin
-#      - MONGODB_ADMIN_PASS=a1234
-#      - MONGODB_APPLICATION_DATABASE=iawappdb
-#      - MONGODB_APPLICATION_USER=user
-#      - MONGODB_APPLICATION_PASS=1234
-
-#      - MONGO_DATA_DIR=/data/db
-#      - MONGO_LOG_DIR=/dev/null
-#      - MONGO_LOG_DIR=/data/logs
-#      - MONGO_USER="mongoadmin"
-#      - MONGO_PASS="1234"
-#      - MONGO_INITDB_ROOT_USERNAME=admin
-#      - MONGO_INITDB_ROOT_PASSWORD=1234
-#      - MONGO_INITDB_DATABASE=test
-#      - MONGO_URL=mongodb://mongo:27017
-#volumes:
-#  mongo:
-volumes:
-  pgdata:
-
-networks:
-  iawapp:
-    driver: bridge

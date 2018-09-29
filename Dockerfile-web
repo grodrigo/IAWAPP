@@ -2,11 +2,9 @@ FROM node:alpine
 RUN mkdir /code
 WORKDIR /code
 ADD src/package.json /code/
-#RUN npm install -g loopback-cli --unsafe-perm=true --allow-root
+RUN npm install -g loopback-cli --unsafe-perm=true --allow-root
 #RUN npm install loopback-connector-postgresql --save
-RUN npm install
-#RUN npm install loopback-connector-mongodb --save
-RUN npm install debug
+#RUN npm install
+#RUN npm install debug
 ADD src /code/
-#RUN node create-test-data.js
 RUN node create-user.js

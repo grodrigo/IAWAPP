@@ -6,7 +6,7 @@ module.exports = function(app) {
     {username: 'John', email: 'john@doe.com', password: 'opensesame'},
     {username: 'Jane', email: 'jane@doe.com', password: 'opensesame'},
     {username: 'Bob', email: 'bob@projects.com', password: 'opensesame'},
-    {username: 'admin2', email: 'a@a.com', password: '1234'}
+    {username: 'admin', email: 'a@a.com', password: '1234'}
 ], function(err, users) {
     if (err) return debug('%j', err);
     //...
